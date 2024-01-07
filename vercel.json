@@ -3,10 +3,15 @@
     "builds": [
       { "src": "package.json", "use": "@now/next" }
     ],
-    "postbuild": {
-      "commands": [
-        "prisma generate"
-      ]
+    "functions": {
+      "postbuild": {
+        "runtime": "now-node@16",
+        "memory": 128,
+        "includeFiles": ["prisma/schema.prisma"],
+        "environment": {
+          "NEXT_TELEMETRY_DISABLED": "1"
+        }
+      }
     }
   }
   
