@@ -12,7 +12,6 @@ export async function POST(request: NextRequest) {
     const validator = vine.compile(loginSchema);
     const payload = await validator.validate(body);
 
-    //  * Check is there any email or not
     const isUserExist = await prisma.user.findUnique({
       where: {
         email: payload.email,
